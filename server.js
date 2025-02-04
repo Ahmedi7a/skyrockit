@@ -86,7 +86,11 @@ app.get('/users/:userId/applications/:applicationId',appController.show);
 //delete the app
 app.delete('/users/:userId/applications/:applicationId', appController.deleteApplication)
 
+//edit page
+app.get('/users/:userId/applications/:applicationId/edit', appController.edit);
 
+//post edit
+app.put('/users/:userId/applications/:applicationId',appController.update)
 
 
 

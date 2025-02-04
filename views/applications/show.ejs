@@ -33,7 +33,10 @@
 
                 <form action="/users/<%= user._id %>/applications/<%= application._id %>?_method=DELETE" method="POST"><br>
                     <button type="submit" class="btn btn-danger">Delete Application</button>
-                </form>
+                </form><br>
+                <a href="/users/<%= user._id %>/applications/<%= application._id %>/edit">
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                </a>
             </div>
 
         </div>

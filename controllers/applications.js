@@ -61,6 +61,33 @@ async function deleteApplication(req,res){
 
 }
 
+//edit page
+async function edit(req,res){
+    try {
+        const currentUser = await User.findById(req.params.userId)
+        const application = currentUser.applications.id(req.params.applicationId)
+        res.render('applications/edit.ejs', {
+            title: application.title,
+            application,
+        })
+    } catch (err) {
+        console.log(err)
+        res.redirect('/')
+    }}
+
+// update post
+async function update(req,res){
+    try{
+        const currentUser = await User.findById(req.params.userId)
+        const application = currentUser.applications.id(req.params.applicationId)
+        application.set(req.body);
+        await currentUser.save();
+        res.redirect(`/users/${currentUser._id}/applications/${req.params.applicationId}`)    }catch(err){
+        console.log(err)
+        res.redirect('/') 
+    }
+}
+
 
 //=================
 module.exports = {
@@ -69,4 +96,6 @@ module.exports = {
     index,
     show,
     deleteApplication,
+    edit,
+    update,
 }
