@@ -41,10 +41,11 @@ app.use(
 app.use(passUserToView);
 //====================================================
 //import controller
-const authCotroller = require('./controllers/authentication.js')
+const authCotroller = require('./controllers/authentication.js');
+const appController = require('./controllers/applications.js');
 
 //==================================================
-
+// auth routs
 //home page
 app.get('/', authCotroller.home);
 
@@ -63,8 +64,26 @@ app.post('/auth/sign-in', authCotroller.signIn)
 //sign out page and kill session
 app.get('/auth/sign-out', authCotroller.signOut);
 
+app.use(isSignedIn); // so after this the user has be signed in
 //vip
-app.get('/vip-lounge', isSignedIn, authCotroller.welcome)
+// app.get('/vip-lounge', isSignedIn, authCotroller.welcome)
+//=============================================================
+//app routes:
+
+// id: 67a1c05e3261b54e887e5abb
+
+//add page
+app.get('/users/:userId/applications/new',appController.newApplication); //view new app form
+//post new app
+app.post('/users/:userId/applications',appController.createApplication);
+
+//show all apps
+app.get('/users/:userId/applications',appController.index);
+
+
+
+
+
 
 
 //=============================================

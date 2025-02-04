@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt"); //hash password
 
 // (/)
 async function home(req, res) {
-    res.render("index.ejs", { title: 'My App' });
+    res.render("index.ejs", { title: 'Sky rockit' });
 };
 
 //sign up page
@@ -34,9 +34,8 @@ async function addUser(req, res) {
     const user = await User.create(req.body)
 
     //once you sign up you get signed in
-    req.session.user = {
-        username: user.username,
-    }
+    req.session.user = user
+ 
 
     // if everything is ok
     req.session.save(()=> {
@@ -70,9 +69,7 @@ async function signIn(req, res) {
             msg: "Invalid password. try again"
         })
     }
-    req.session.user = {
-        username: userInDatabase.username,
-    }
+    req.session.user = userInDatabase;
 
     // if everything is ok
     req.session.save(()=> {
