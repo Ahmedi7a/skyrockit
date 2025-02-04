@@ -80,6 +80,11 @@ app.post('/users/:userId/applications',appController.createApplication);
 //show all apps
 app.get('/users/:userId/applications',appController.index);
 
+//show more
+app.get('/users/:userId/applications/:applicationId',appController.show);
+
+//delete the app
+app.delete('/users/:userId/applications/:applicationId', appController.deleteApplication)
 
 
 

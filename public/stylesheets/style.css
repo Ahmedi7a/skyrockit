@@ -10,6 +10,13 @@ body {
     flex-direction: column;
     align-items: center;
 }
+.card-container{
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
 form {
     display: flex;
